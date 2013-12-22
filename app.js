@@ -10,7 +10,9 @@ var http = require('http');
 var path = require('path');
 var hello = require('./routes/hello');
 
-var api = require('./routes/info');
+
+var api = require('./routes/api');
+
 
 var app = express();
 
@@ -36,7 +38,13 @@ app.get('/users', user.list);
 app.get('/hello', hello.index);
 app.get('/ya', hello.ya);
 
-app.get('/1/info', api.info);
+
+
+
+app.get('/1/user/:name', api.read);
+app.post('/1/user/:name', api.create);
+app.put('/1/user/:name', api.update);
+app.delete('/1/user/:name', api.delete);
 
 
 http.createServer(app).listen(app.get('port'), function(){
