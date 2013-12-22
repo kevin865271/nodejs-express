@@ -10,6 +10,8 @@ var http = require('http');
 var path = require('path');
 var hello = require('./routes/hello');
 
+var api = require('./routes/info');
+
 var app = express();
 
 // all environments
@@ -32,6 +34,10 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/users', user.list);
 app.get('/hello', hello.index);
+app.get('/ya', hello.ya);
+
+app.get('/1/info', api.info);
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
